@@ -91,12 +91,6 @@ const services = [
 ];
 
 function AgencyHeader() {
-  const navItems = [
-    { label: "Services", href: "#services" },
-    { label: "Process", href: "#process" },
-    { label: "Pricing", href: "#pricing" },
-  ];
-
   return (
     <header className="relative z-20 border-b border-white/10">
       <div className="mx-auto flex h-20 w-full max-w-[1320px] items-center justify-between px-5 sm:px-8 lg:px-12">
@@ -111,24 +105,12 @@ function AgencyHeader() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm font-bold text-white/70 md:flex">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="transition hover:text-white"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        <Button
-          asChild
-          className="h-11 rounded-lg bg-white px-5 text-sm font-bold text-flooencer-deep shadow-[0_18px_50px_rgba(205,156,236,0.24)] hover:bg-flooencer-lavender"
+        <a
+          href="https://www.flooencer.com"
+          className="rounded-lg border border-white/14 bg-white/8 px-4 py-2.5 text-sm font-bold text-white/78 transition hover:border-white/28 hover:bg-white/14 hover:text-white"
         >
-          <Link href={discussHref}>Discuss your campaign</Link>
-        </Button>
+          Flooencer Platform
+        </a>
       </div>
     </header>
   );
@@ -140,10 +122,7 @@ function Hero() {
       <AgencyHeader />
       <section className="mx-auto grid min-h-[calc(100svh-5rem)] w-full max-w-[1320px] items-center gap-12 px-5 py-14 sm:px-8 lg:grid-cols-[1.08fr_0.92fr] lg:px-12 lg:py-20">
         <div className="max-w-4xl">
-          <p className="inline-flex rounded-full border border-white/16 bg-white/10 px-4 py-2 text-sm font-bold text-white/78 backdrop-blur">
-            Flooencer Agency
-          </p>
-          <h1 className="mt-7 max-w-5xl font-display text-[48px] font-black leading-[0.9] tracking-normal text-white sm:text-7xl lg:text-[88px]">
+          <h1 className="max-w-5xl font-display text-[48px] font-black leading-[0.9] tracking-normal text-white sm:text-7xl lg:text-[88px]">
             B2B creator campaigns, run for you.
           </h1>
           <p className="mt-7 max-w-2xl text-lg font-medium leading-8 text-white/72 sm:text-xl">
@@ -175,40 +154,6 @@ function Hero() {
             </Button>
           </div>
         </div>
-
-        <aside className="rounded-lg border border-white/16 bg-white/[0.095] p-5 text-white shadow-[0_28px_90px_rgba(0,0,0,0.34)] backdrop-blur-xl sm:p-7">
-          <p className="text-sm font-bold uppercase tracking-[0.22em] text-white/54">
-            Agency engagement
-          </p>
-          <div className="mt-7 grid gap-4">
-            <div className="rounded-lg border border-white/12 bg-white/10 p-5">
-              <p className="font-display text-5xl font-black leading-none">
-                $5,000
-              </p>
-              <p className="mt-2 text-sm font-bold text-white/62">
-                per month or 30% of campaign spend
-              </p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-lg border border-white/12 bg-white/10 p-5">
-                <p className="font-display text-4xl font-black leading-none">
-                  3x
-                </p>
-                <p className="mt-2 text-sm font-bold text-white/62">
-                  month campaign minimum
-                </p>
-              </div>
-              <div className="rounded-lg border border-white/12 bg-white/10 p-5">
-                <p className="font-display text-4xl font-black leading-none">
-                  $35k
-                </p>
-                <p className="mt-2 text-sm font-bold text-white/62">
-                  typical proof of concept
-                </p>
-              </div>
-            </div>
-          </div>
-        </aside>
       </section>
     </ShaderBackground>
   );
