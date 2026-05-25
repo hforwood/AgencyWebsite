@@ -2,7 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { CustomerLogoCloud } from "@/components/customer-logo-cloud";
-import { FlooencerIcon } from "@/components/flooencer-icon";
+import {
+  FlooencerIcon,
+  type FlooencerIconName,
+} from "@/components/flooencer-icon";
 import { Button } from "@/components/ui/button";
 import CoreValueStats, { type CoreStat } from "@/components/ui/core-value-stats";
 import {
@@ -83,13 +86,31 @@ const processItems = [
 ] satisfies ProcessItem[];
 
 const services = [
-  "Creator sourcing and validation",
-  "Campaign strategy and messaging",
-  "Creator outreach and negotiation",
-  "Briefs, approvals, and launch management",
-  "Content collection and reporting",
-  "Optimisation across campaign waves",
-];
+  {
+    title: "Creator sourcing and validation",
+    icon: "person-magnifier",
+  },
+  {
+    title: "Campaign strategy and messaging",
+    icon: "target",
+  },
+  {
+    title: "Creator outreach and negotiation",
+    icon: "comments",
+  },
+  {
+    title: "Briefs, approvals, and launch management",
+    icon: "list-check",
+  },
+  {
+    title: "Content collection and reporting",
+    icon: "chart-bar",
+  },
+  {
+    title: "Optimisation across campaign waves",
+    icon: "chart-line",
+  },
+] satisfies { title: string; icon: FlooencerIconName }[];
 
 const navGroups = [
   {
@@ -249,10 +270,7 @@ function Services() {
     <section id="services" className="bg-white px-5 py-20 sm:px-8 lg:px-12">
       <div className="mx-auto grid w-full max-w-[1200px] gap-12 lg:grid-cols-[0.85fr_1.15fr]">
         <div>
-          <p className="text-sm font-bold uppercase tracking-[0.22em] text-flooencer-purple">
-            What we run
-          </p>
-          <h2 className="mt-4 font-display text-5xl font-black leading-[0.92] tracking-normal text-flooencer-black sm:text-6xl">
+          <h2 className="font-display text-5xl font-black leading-[0.92] tracking-normal text-flooencer-black sm:text-6xl">
             The managed service behind B2B creator growth.
           </h2>
           <p className="mt-6 max-w-xl text-lg font-medium leading-8 text-black/60">
@@ -264,14 +282,22 @@ function Services() {
         <div className="grid gap-3 sm:grid-cols-2">
           {services.map((service) => (
             <div
-              key={service}
-              className="flex min-h-24 items-start gap-4 rounded-lg border border-black/10 bg-white p-5 shadow-[0_16px_46px_rgba(119,85,250,0.08)]"
+              key={service.title}
+              className="flex min-h-32 items-center gap-5 rounded-lg border border-black/10 bg-white p-5 shadow-[0_16px_46px_rgba(119,85,250,0.08)]"
             >
-              <span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-flooencer-purple text-white">
-                <FlooencerIcon name="check" className="size-4" />
+              <span className="flex size-[72px] shrink-0 items-center justify-center rounded-lg bg-[linear-gradient(135deg,#6513D1_0%,#7755FA_100%)] text-white shadow-[0_18px_44px_rgba(119,85,250,0.28)]">
+                <FlooencerIcon
+                  name={service.icon}
+                  className="size-14"
+                  style={{
+                    WebkitMask:
+                      "var(--flooencer-icon-url) center / 250% no-repeat",
+                    mask: "var(--flooencer-icon-url) center / 250% no-repeat",
+                  }}
+                />
               </span>
               <p className="text-base font-bold leading-6 text-flooencer-black">
-                {service}
+                {service.title}
               </p>
             </div>
           ))}
