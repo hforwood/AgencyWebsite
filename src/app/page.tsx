@@ -196,57 +196,6 @@ function Services() {
   );
 }
 
-function Pricing() {
-  return (
-    <section id="pricing" className="bg-white px-5 py-20 sm:px-8 lg:px-12">
-      <div className="mx-auto grid w-full max-w-[1100px] gap-6 lg:grid-cols-[1fr_1fr]">
-        <div className="rounded-lg border border-black/10 bg-flooencer-black p-7 text-white shadow-[0_24px_80px_rgba(40,7,82,0.22)] sm:p-8">
-          <p className="text-sm font-bold uppercase tracking-[0.22em] text-flooencer-lavender">
-            Pricing
-          </p>
-          <h2 className="mt-4 font-display text-5xl font-black leading-[0.92] tracking-normal">
-            Built for serious campaign tests.
-          </h2>
-          <div className="mt-8 space-y-4 text-lg font-bold">
-            <p>$5,000 per month</p>
-            <p>or 30% of campaign spend</p>
-            <p className="text-sm font-medium text-white/50">
-              Whichever is higher, plus a $5,000 initial setup month.
-            </p>
-          </div>
-        </div>
-
-        <div className="rounded-lg border border-black/10 bg-[#f8f6ff] p-7 text-flooencer-black shadow-[0_24px_80px_rgba(119,85,250,0.12)] sm:p-8">
-          <p className="text-sm font-bold uppercase tracking-[0.22em] text-flooencer-purple">
-            Requirements
-          </p>
-          <h2 className="mt-4 font-display text-5xl font-black leading-[0.92] tracking-normal">
-            Minimum commitment.
-          </h2>
-          <div className="mt-8 space-y-4 text-lg font-bold">
-            <p>$5,000 per month campaign spend</p>
-            <p>3 month long campaign</p>
-            <p>Typical POC: $35,000</p>
-          </div>
-          <Button
-            asChild
-            className="mt-8 h-12 rounded-lg bg-[linear-gradient(135deg,#6513D1_0%,#7755FA_100%)] px-6 text-base font-bold text-white shadow-[0_18px_60px_rgba(101,19,209,0.26)] hover:brightness-110"
-          >
-            <Link href={discussHref}>
-              Discuss your campaign
-              <FlooencerIcon
-                data-icon="inline-end"
-                name="arrow-right"
-                className="size-6"
-              />
-            </Link>
-          </Button>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-flooencer-black">
@@ -262,7 +211,6 @@ export default function Home() {
         href={discussHref}
         items={processItems}
       />
-      <Pricing />
     </main>
   );
 }
