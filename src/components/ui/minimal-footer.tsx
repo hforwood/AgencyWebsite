@@ -10,20 +10,21 @@ const footerGroups = [
   {
     title: "Company",
     links: [
-      { label: "Discuss Your Campaign", href: "/discuss-your-campaign" },
       { label: "Contact Us", href: "/contact" },
       {
-        label: "Main Website",
-        href: "https://www.flooencer.com",
+        label: "About Us",
+        href: "https://www.flooencer.com/about-us/team-members",
       },
     ],
   },
   {
-    title: "Agency",
+    title: "Products",
     links: [
-      { label: "Services", href: "/#services" },
-      { label: "Process", href: "/#process" },
-      { label: "Pricing", href: "/#pricing" },
+      {
+        label: "B2B Influencer Marketplace",
+        href: "https://www.flooencer.com",
+      },
+      { label: "Flooencer Agency", href: "https://agency.flooencer.com" },
     ],
   },
   {
@@ -33,8 +34,12 @@ const footerGroups = [
     ],
   },
   {
-    title: "For Creators",
+    title: "B2B Influencers",
     links: [
+      {
+        label: "Home",
+        href: "https://www.flooencer.com/b2binfluencers",
+      },
       {
         label: "Sign Up",
         href: "https://businessinfluencer.flooencer.com/sign-up",
@@ -92,7 +97,7 @@ export function MinimalFooter() {
       <div className="mx-auto w-full max-w-[1200px]">
         <div className="grid gap-10 lg:grid-cols-[0.75fr_3fr]">
           <div className="flex flex-col items-start gap-6">
-            <Link href="/" aria-label="Flooencer agency home">
+            <Link href="/" aria-label="Flooencer home">
               <Image
                 src={flooencerLogoWhite}
                 alt="Flooencer."

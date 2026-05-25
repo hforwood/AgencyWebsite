@@ -91,12 +91,83 @@ const services = [
   "Optimisation across campaign waves",
 ];
 
-function AgencyHeader() {
-  const navItems = [
-    { label: "Flooencer Platform", href: "https://www.flooencer.com" },
-    { label: "Blog", href: "https://www.flooencer.com/resources/blog" },
-  ];
+const navGroups = [
+  {
+    label: "For Brands",
+    items: [
+      {
+        label: "B2B Influencer Marketplace",
+        href: "https://www.flooencer.com",
+        description: "Find and manage B2B creator partners.",
+      },
+      {
+        label: "Flooencer Agency",
+        href: "https://agency.flooencer.com",
+        description: "Use our team to run creator campaigns end to end.",
+      },
+    ],
+  },
+  {
+    label: "For Creators",
+    items: [
+      {
+        label: "B2B Creator Platform",
+        href: "https://businessinfluencer.flooencer.com",
+        description: "Join campaigns from SaaS, AI, and technology brands.",
+      },
+    ],
+  },
+  {
+    label: "Company",
+    items: [
+      {
+        label: "About Us",
+        href: "https://www.flooencer.com/about-us/team-members",
+        description: "Meet the team building Flooencer.",
+      },
+      {
+        label: "Contact Us",
+        href: "https://www.flooencer.com/contact",
+        description: "Get in touch with the Flooencer team.",
+      },
+    ],
+  },
+];
 
+function AgencyNavDropdown({ group }: { group: (typeof navGroups)[number] }) {
+  return (
+    <div className="group relative">
+      <button
+        className="flex h-11 items-center gap-1.5 rounded-lg px-2 transition hover:text-white"
+        type="button"
+      >
+        {group.label}
+        <FlooencerIcon
+          name="chevron-down"
+          className="size-5 transition group-hover:rotate-180"
+        />
+      </button>
+      <div className="invisible absolute left-1/2 top-full min-w-72 -translate-x-1/2 translate-y-2 rounded-lg border border-white/12 bg-[#12091f]/95 p-2 opacity-0 shadow-[0_24px_80px_rgba(0,0,0,0.34)] backdrop-blur-xl transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+        {group.items.map((item) => (
+          <a
+            className="block rounded-lg px-4 py-3 transition hover:bg-white/10"
+            href={item.href}
+            key={item.label}
+          >
+            <span className="block text-sm font-bold text-white">
+              {item.label}
+            </span>
+            <span className="mt-1 block text-sm font-medium leading-5 text-white/54">
+              {item.description}
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AgencyHeader() {
   return (
     <header className="relative z-20 border-b border-white/10">
       <div className="mx-auto flex h-20 w-full max-w-[1320px] items-center justify-between px-5 sm:px-8 lg:px-12">
@@ -112,16 +183,17 @@ function AgencyHeader() {
         </Link>
 
         <div className="flex items-center gap-3 sm:gap-6">
-          <nav className="hidden items-center gap-6 text-sm font-bold text-white/66 sm:flex">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="transition hover:text-white"
-              >
-                {item.label}
-              </a>
+          <nav className="hidden items-center gap-6 text-sm font-bold text-white/66 lg:flex">
+            {navGroups.slice(0, 2).map((group) => (
+              <AgencyNavDropdown group={group} key={group.label} />
             ))}
+            <a
+              className="transition hover:text-white"
+              href="https://www.flooencer.com/resources/blog"
+            >
+              Blog
+            </a>
+            <AgencyNavDropdown group={navGroups[2]} />
           </nav>
 
           <Button
