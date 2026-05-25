@@ -4,9 +4,10 @@ Next.js site for Flooencer's B2B creator campaign agency website.
 
 ## Production Ownership
 
-This repository is the agency website codebase. It contains the agency booking
-flow at `/discuss-your-campaign`; pages in this codebase should use agency CTAs
-that point there.
+This repository is the agency website codebase. It contains the agency landing
+page with the shader hero and the agency booking flow at
+`/discuss-your-campaign`; pages in this codebase should use agency CTAs that
+point there.
 
 - Production domain: `agency.flooencer.com`
 - Vercel project: `agency-website`
@@ -15,8 +16,8 @@ that point there.
 Do not use this codebase as the canonical `flooencer.com` / `www.flooencer.com`
 main marketing website.
 
-The agency booking experience is served from `/`. The legacy
-`/discuss-your-campaign` route remains available for direct links.
+The agency landing page is served from `/`. The booking experience is served
+from `/discuss-your-campaign`.
 
 ## Development
 

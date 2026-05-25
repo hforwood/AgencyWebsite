@@ -10,21 +10,20 @@ const footerGroups = [
   {
     title: "Company",
     links: [
+      { label: "Discuss Your Campaign", href: "/discuss-your-campaign" },
       { label: "Contact Us", href: "/contact" },
       {
-        label: "About Us",
-        href: "https://www.flooencer.com/about-us/team-members",
+        label: "Main Website",
+        href: "https://www.flooencer.com",
       },
     ],
   },
   {
-    title: "Products",
+    title: "Agency",
     links: [
-      {
-        label: "B2B Influencer Marketplace",
-        href: "https://www.flooencer.com",
-      },
-      { label: "Flooencer Agency", href: "https://agency.flooencer.com" },
+      { label: "Services", href: "/#services" },
+      { label: "Process", href: "/#process" },
+      { label: "Pricing", href: "/#pricing" },
     ],
   },
   {
@@ -34,12 +33,8 @@ const footerGroups = [
     ],
   },
   {
-    title: "B2B Influencers",
+    title: "For Creators",
     links: [
-      {
-        label: "Home",
-        href: "https://www.flooencer.com/b2binfluencers",
-      },
       {
         label: "Sign Up",
         href: "https://businessinfluencer.flooencer.com/sign-up",
