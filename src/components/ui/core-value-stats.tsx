@@ -2,6 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { MeshGradient } from "@paper-design/shaders-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -10,6 +11,7 @@ export interface CoreStat {
   label: string;
   description: string;
   image?: string;
+  variant?: "shader";
 }
 
 interface CoreValueStatsProps {
@@ -46,6 +48,7 @@ export default function CoreValueStats({
         <div className="mt-12 grid gap-4 text-left md:grid-cols-2 lg:grid-cols-4">
           {stats.map((item, i) => {
             const hasImage = Boolean(item.image);
+            const hasShader = item.variant === "shader";
 
             return (
               <motion.div
@@ -59,9 +62,26 @@ export default function CoreValueStats({
                 <Card
                   className={cn(
                     "relative h-full min-h-72 overflow-hidden rounded-lg border-white/10 bg-white text-flooencer-black shadow-none transition hover:-translate-y-1 hover:shadow-[0_24px_80px_rgba(119,85,250,0.2)]",
-                    hasImage && "border-white/20 bg-flooencer-deep text-white"
+                    (hasImage || hasShader) &&
+                      "border-white/20 bg-flooencer-deep text-white"
                   )}
                 >
+                  {hasShader ? (
+                    <>
+                      <MeshGradient
+                        className="absolute inset-0 h-full w-full"
+                        colors={[
+                          "#0f0f0f",
+                          "#280752",
+                          "#6513D1",
+                          "#7755FA",
+                          "#CD9CEC",
+                        ]}
+                        speed={0.2}
+                      />
+                      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,15,15,0.7)_0%,rgba(40,7,82,0.48)_55%,rgba(15,15,15,0.24)_100%)]" />
+                    </>
+                  ) : null}
                   {item.image ? (
                     <>
                       <Image
@@ -82,7 +102,9 @@ export default function CoreValueStats({
                       <p
                         className={cn(
                           "mt-4 font-display text-2xl font-bold leading-none tracking-normal",
-                          hasImage ? "text-white" : "text-flooencer-black"
+                          hasImage || hasShader
+                            ? "text-white"
+                            : "text-flooencer-black"
                         )}
                       >
                         {item.label}
@@ -91,7 +113,7 @@ export default function CoreValueStats({
                     <p
                       className={cn(
                         "mt-8 text-base leading-7",
-                        hasImage ? "text-white/78" : "text-black/62"
+                        hasImage || hasShader ? "text-white/78" : "text-black/62"
                       )}
                     >
                       {item.description}

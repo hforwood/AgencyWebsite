@@ -17,28 +17,29 @@ const discussHref = "/discuss-your-campaign";
 
 const stats = [
   {
-    value: "$35k",
-    label: "Typical POC",
+    value: "$2M+",
+    label: "Campaign spend",
     description:
-      "A focused campaign structure with creator sourcing, management, briefs, reporting, and launch support.",
+      "Managed across B2B creator campaigns for SaaS, AI, and technology companies.",
   },
   {
-    value: "$5k",
-    label: "Monthly minimum",
+    value: "100+",
+    label: "Brands worked with",
     description:
-      "Built for B2B brands ready to run creator-led campaigns with enough budget to learn properly.",
+      "From early growth teams to global software companies running creator-led demand.",
   },
   {
-    value: "30%",
-    label: "Of campaign spend",
+    value: "2,000+",
+    label: "Sponsored creators",
     description:
-      "Agency management can scale with spend when campaign budgets move beyond the minimum monthly fee.",
+      "B2B creators activated across LinkedIn, YouTube, newsletters, podcasts, and niche communities.",
   },
   {
-    value: "3x",
-    label: "Month campaigns",
+    value: "10,000+",
+    label: "Pieces of content",
     description:
-      "Enough time to match creators, launch content, read signal, and optimise the next wave.",
+      "Creator-led posts, videos, newsletters, and campaign assets launched across B2B audiences.",
+    variant: "shader",
   },
 ] satisfies CoreStat[];
 
@@ -91,6 +92,11 @@ const services = [
 ];
 
 function AgencyHeader() {
+  const navItems = [
+    { label: "Flooencer Platform", href: "https://www.flooencer.com" },
+    { label: "Blog", href: "https://www.flooencer.com/resources/blog" },
+  ];
+
   return (
     <header className="relative z-20 border-b border-white/10">
       <div className="mx-auto flex h-20 w-full max-w-[1320px] items-center justify-between px-5 sm:px-8 lg:px-12">
@@ -105,12 +111,26 @@ function AgencyHeader() {
           />
         </Link>
 
-        <a
-          href="https://www.flooencer.com"
-          className="rounded-lg border border-white/14 bg-white/8 px-4 py-2.5 text-sm font-bold text-white/78 transition hover:border-white/28 hover:bg-white/14 hover:text-white"
-        >
-          Flooencer Platform
-        </a>
+        <div className="flex items-center gap-3 sm:gap-6">
+          <nav className="hidden items-center gap-6 text-sm font-bold text-white/66 sm:flex">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="transition hover:text-white"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          <Button
+            asChild
+            className="h-11 rounded-lg bg-white px-4 text-sm font-bold text-flooencer-deep shadow-[0_18px_50px_rgba(205,156,236,0.24)] hover:bg-flooencer-lavender sm:px-5"
+          >
+            <Link href={discussHref}>Discuss your campaign</Link>
+          </Button>
+        </div>
       </div>
     </header>
   );
@@ -144,13 +164,6 @@ function Hero() {
                   className="size-6"
                 />
               </Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              className="h-14 rounded-lg border-white/20 bg-white/5 px-7 text-base font-bold text-white backdrop-blur hover:bg-white/12 hover:text-white"
-            >
-              <a href="#process">See how it works</a>
             </Button>
           </div>
         </div>
