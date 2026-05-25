@@ -2,10 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { CustomerLogoCloud } from "@/components/customer-logo-cloud";
-import {
-  FlooencerIcon,
-  type FlooencerIconName,
-} from "@/components/flooencer-icon";
+import { FlooencerIcon } from "@/components/flooencer-icon";
 import { Button } from "@/components/ui/button";
 import CoreValueStats, { type CoreStat } from "@/components/ui/core-value-stats";
 import {
@@ -88,29 +85,29 @@ const processItems = [
 const services = [
   {
     title: "Creator sourcing and validation",
-    icon: "person-magnifier",
+    icon: "/process-icons/creator-sourcing.svg",
   },
   {
     title: "Campaign strategy and messaging",
-    icon: "target",
+    icon: "/process-icons/campaign-strategy.svg",
   },
   {
     title: "Creator outreach and negotiation",
-    icon: "comments",
+    icon: "/process-icons/finance-legal.svg",
   },
   {
     title: "Briefs, approvals, and launch management",
-    icon: "list-check",
+    icon: "/process-icons/campaign-brief.svg",
   },
   {
     title: "Content collection and reporting",
-    icon: "chart-bar",
+    icon: "/process-icons/reporting.svg",
   },
   {
     title: "Optimisation across campaign waves",
-    icon: "chart-line",
+    icon: "/process-icons/optimise.svg",
   },
-] satisfies { title: string; icon: FlooencerIconName }[];
+] satisfies { title: string; icon: string }[];
 
 const navGroups = [
   {
@@ -192,7 +189,11 @@ function AgencyHeader() {
   return (
     <header className="relative z-20 border-b border-white/10">
       <div className="mx-auto flex h-20 w-full max-w-[1320px] items-center justify-between px-5 sm:px-8 lg:px-12">
-        <Link href="/" aria-label="Flooencer agency home" className="shrink-0">
+        <a
+          href="https://www.flooencer.com"
+          aria-label="Flooencer home"
+          className="shrink-0"
+        >
           <Image
             src={flooencerLogoWhite}
             alt="Flooencer."
@@ -200,8 +201,9 @@ function AgencyHeader() {
             height={40}
             priority
             className="h-auto w-[142px] sm:w-[168px]"
+            style={{ height: "auto" }}
           />
-        </Link>
+        </a>
 
         <div className="flex items-center gap-3 sm:gap-6">
           <nav className="hidden items-center gap-6 text-sm font-bold text-white/66 lg:flex">
@@ -285,14 +287,13 @@ function Services() {
               key={service.title}
               className="flex min-h-32 items-center gap-5 rounded-lg border border-black/10 bg-white p-5 shadow-[0_16px_46px_rgba(119,85,250,0.08)]"
             >
-              <span className="flex size-[72px] shrink-0 items-center justify-center rounded-lg bg-[linear-gradient(135deg,#6513D1_0%,#7755FA_100%)] text-white shadow-[0_18px_44px_rgba(119,85,250,0.28)]">
-                <FlooencerIcon
-                  name={service.icon}
-                  className="size-14"
+              <span className="flex size-16 shrink-0 items-center justify-center rounded-lg bg-[linear-gradient(135deg,#6513D1_0%,#7755FA_100%)] text-white shadow-[0_18px_42px_rgba(119,85,250,0.24)]">
+                <span
+                  aria-hidden="true"
+                  className="inline-block size-12 bg-current"
                   style={{
-                    WebkitMask:
-                      "var(--flooencer-icon-url) center / 250% no-repeat",
-                    mask: "var(--flooencer-icon-url) center / 250% no-repeat",
+                    WebkitMask: `url(${service.icon}) center / 220% no-repeat`,
+                    mask: `url(${service.icon}) center / 220% no-repeat`,
                   }}
                 />
               </span>

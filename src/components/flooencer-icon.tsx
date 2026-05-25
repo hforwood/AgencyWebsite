@@ -30,7 +30,6 @@ import picture from "../../Icon Updated/icon/picture.svg";
 import rocket from "../../Icon Updated/icon/rocket.svg";
 import squareArticle from "../../Icon Updated/icon/square-article.svg";
 import tagDollar from "../../Icon Updated/icon/tag-dollar.svg";
-import target from "../../Icon Updated/icon/target.svg";
 import video from "../../Icon Updated/icon/video.svg";
 import xmark from "../../Icon Updated/icon/xmark.svg";
 
@@ -63,7 +62,6 @@ const icons = {
   rocket,
   "square-article": squareArticle,
   "tag-dollar": tagDollar,
-  target,
   video,
   xmark,
 };
