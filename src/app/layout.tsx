@@ -5,6 +5,8 @@ import { MinimalFooter } from "@/components/ui/minimal-footer";
 
 import "./globals.css";
 
+const GOOGLE_TAG_ID = "G-YHPYVYFDSZ";
+
 const degularDisplay = localFont({
   src: [
     {
@@ -76,6 +78,23 @@ export default function RootLayout({
       lang="en"
       className={`${degularDisplay.variable} ${dmSans.variable} h-full scroll-smooth antialiased`}
     >
+      <head>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_TAG_ID}`}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', '${GOOGLE_TAG_ID}');
+`,
+          }}
+        />
+      </head>
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <div className="flex-1">{children}</div>
         <MinimalFooter />
