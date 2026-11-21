@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 
+import { AgencyPricingCalculator } from "@/components/agency-pricing-calculator";
 import { CalInlineEmbed } from "@/components/cal-inline-embed";
 import { CustomerLogoCloud } from "@/components/customer-logo-cloud";
+import {
+  AGENCY_MINIMUM_COMMITMENT_MONTHS,
+  AGENCY_MONTHLY_MINIMUM_USD,
+  AGENCY_SETUP_FEE_USD,
+  AGENCY_SPEND_RATE,
+  formatMoney,
+  formatRate,
+} from "@/lib/agency-pricing";
 
 import bookingBackground from "../../../public/booking-background.png";
 
@@ -10,11 +19,41 @@ export const metadata: Metadata = {
   title: "Discuss Your Campaign | Flooencer.",
   description:
     "Book an agency call with Flooencer to discuss your B2B influencer marketing campaign.",
+  alternates: {
+    canonical: "https://agency.flooencer.com/discuss-your-campaign",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Flooencer Agency",
+  description:
+    "Managed B2B creator campaigns for SaaS, AI and technology brands.",
+  url: "https://agency.flooencer.com/discuss-your-campaign",
+  provider: {
+    "@type": "Organization",
+    name: "Flooencer",
+    url: "https://agency.flooencer.com",
+  },
+  areaServed: "Worldwide",
+  serviceType: "Managed B2B influencer marketing",
+  offers: {
+    "@type": "Offer",
+    name: "Flooencer Agency managed campaign",
+    description: `${formatMoney(AGENCY_MONTHLY_MINIMUM_USD)} per month or ${formatRate(AGENCY_SPEND_RATE)} of campaign spend, whichever is higher, plus a one-time ${formatMoney(AGENCY_SETUP_FEE_USD)} setup fee and a ${AGENCY_MINIMUM_COMMITMENT_MONTHS}-month minimum.`,
+    priceCurrency: "USD",
+    url: "https://agency.flooencer.com/discuss-your-campaign",
+  },
 };
 
 export default function DiscussYourCampaignPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-white text-flooencer-black">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Image
         src={bookingBackground}
         alt=""
@@ -29,59 +68,13 @@ export default function DiscussYourCampaignPage() {
         <h1 className="text-center font-display text-4xl font-black leading-none tracking-normal text-[#2b2b31] sm:text-5xl">
           Work with Flooencer Agency
         </h1>
+        <p className="mt-4 max-w-2xl text-center text-base font-medium leading-7 text-black/58 sm:text-lg">
+          Set your campaign budget, see the managed program cost, then book a
+          time to plan your campaign.
+        </p>
 
-        <div className="mt-4 grid w-full max-w-[560px] gap-5 rounded-lg border border-black/10 bg-white/92 p-5 shadow-[0_18px_50px_rgba(40,7,82,0.18)] backdrop-blur sm:grid-cols-2 sm:p-6">
-          <div>
-            <h2 className="font-display text-3xl font-bold leading-none text-flooencer-black">
-              Pricing
-            </h2>
-            <div className="mt-3 space-y-2 text-sm font-bold text-flooencer-black">
-              <p>
-                $5,000{" "}
-                <span className="text-xs font-medium text-black/35">
-                  Per Month
-                </span>
-              </p>
-              <p>
-                or 30%{" "}
-                <span className="text-xs font-medium text-black/35">
-                  Of Campaign Spend
-                </span>
-              </p>
-            </div>
-            <p className="mt-2 text-[11px] font-medium text-black/35">
-              Whichever is higher
-            </p>
-            <p className="mt-6 text-sm font-bold text-flooencer-black">
-              +$5,000{" "}
-              <span className="text-xs font-medium text-black/35">
-                For Initial Setup Month
-              </span>
-            </p>
-          </div>
-
-          <div>
-            <h2 className="font-display text-xl font-bold leading-none text-flooencer-black">
-              Minimum Requirements
-            </h2>
-            <div className="mt-3 space-y-2 text-sm font-bold text-flooencer-black">
-              <p>
-                $5,000{" "}
-                <span className="text-xs font-medium text-black/35">
-                  Per Month Campaign Spend
-                </span>
-              </p>
-              <p>
-                3x Month{" "}
-                <span className="text-xs font-medium text-black/35">
-                  Long Campaign
-                </span>
-              </p>
-            </div>
-            <p className="mt-11 text-sm font-bold text-flooencer-black">
-              Typical POC: $35,000
-            </p>
-          </div>
+        <div className="mt-8 w-full">
+          <AgencyPricingCalculator />
         </div>
 
         <CustomerLogoCloud
@@ -90,8 +83,17 @@ export default function DiscussYourCampaignPage() {
           logoClassName="[&_img]:opacity-70"
         />
 
-        <div className="mt-4 w-full max-w-[740px]">
-          <CalInlineEmbed />
+        <div className="mt-8 w-full max-w-[740px] text-center">
+          <h2 className="font-display text-3xl font-black leading-none text-[#2b2b31] sm:text-4xl">
+            Book a time to discuss your campaign
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-sm font-medium leading-6 text-black/58 sm:text-base">
+            Choose a time that works and we&apos;ll talk through your goals,
+            creators and campaign plan.
+          </p>
+          <div className="mt-6 text-left">
+            <CalInlineEmbed />
+          </div>
         </div>
       </section>
     </main>
