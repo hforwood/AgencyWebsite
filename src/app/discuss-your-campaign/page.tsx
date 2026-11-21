@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 
+import { AgencyEstimateProvider } from "@/components/agency-estimate-context";
 import { AgencyPricingCalculator } from "@/components/agency-pricing-calculator";
 import { CalInlineEmbed } from "@/components/cal-inline-embed";
 import { CustomerLogoCloud } from "@/components/customer-logo-cloud";
 import {
-  AGENCY_MINIMUM_COMMITMENT_MONTHS,
   AGENCY_MONTHLY_MINIMUM_USD,
   AGENCY_SETUP_FEE_USD,
   AGENCY_SPEND_RATE,
@@ -18,7 +18,7 @@ import bookingBackground from "../../../public/booking-background.png";
 export const metadata: Metadata = {
   title: "Discuss Your Campaign | Flooencer.",
   description:
-    "Book an agency call with Flooencer to discuss your B2B influencer marketing campaign.",
+    "Estimate Flooencer Agency pricing at $7,500 setup plus $7,500 or 30% of campaign spend, then book a B2B creator campaign call.",
   alternates: {
     canonical: "https://agency.flooencer.com/discuss-your-campaign",
   },
@@ -41,8 +41,22 @@ const jsonLd = {
   offers: {
     "@type": "Offer",
     name: "Flooencer Agency managed campaign",
-    description: `${formatMoney(AGENCY_MONTHLY_MINIMUM_USD)} per month or ${formatRate(AGENCY_SPEND_RATE)} of campaign spend, whichever is higher, plus a one-time ${formatMoney(AGENCY_SETUP_FEE_USD)} setup fee and a ${AGENCY_MINIMUM_COMMITMENT_MONTHS}-month minimum.`,
+    description: `${formatMoney(AGENCY_MONTHLY_MINIMUM_USD)} or ${formatRate(AGENCY_SPEND_RATE)} of campaign spend, whichever is higher, plus a one-time ${formatMoney(AGENCY_SETUP_FEE_USD)} setup fee.`,
     priceCurrency: "USD",
+    priceSpecification: [
+      {
+        "@type": "UnitPriceSpecification",
+        name: "Agency minimum",
+        price: String(AGENCY_MONTHLY_MINIMUM_USD),
+        priceCurrency: "USD",
+      },
+      {
+        "@type": "UnitPriceSpecification",
+        name: "Initial setup fee",
+        price: String(AGENCY_SETUP_FEE_USD),
+        priceCurrency: "USD",
+      },
+    ],
     url: "https://agency.flooencer.com/discuss-your-campaign",
   },
 };
@@ -69,32 +83,35 @@ export default function DiscussYourCampaignPage() {
           Work with Flooencer Agency
         </h1>
         <p className="mt-4 max-w-2xl text-center text-base font-medium leading-7 text-black/58 sm:text-lg">
-          Set your campaign budget, see the managed program cost, then book a
-          time to plan your campaign.
+          Set your campaign budget, see the agency cost, then book a time to
+          plan your campaign.
         </p>
 
-        <div className="mt-8 w-full">
-          <AgencyPricingCalculator />
-        </div>
-
-        <CustomerLogoCloud
-          className="mt-7"
-          headingClassName="text-[#2b2b31]"
-          logoClassName="[&_img]:opacity-70"
-        />
-
-        <div className="mt-8 w-full max-w-[740px] text-center">
-          <h2 className="font-display text-3xl font-black leading-none text-[#2b2b31] sm:text-4xl">
-            Book a time to discuss your campaign
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-sm font-medium leading-6 text-black/58 sm:text-base">
-            Choose a time that works and we&apos;ll talk through your goals,
-            creators and campaign plan.
-          </p>
-          <div className="mt-6 text-left">
-            <CalInlineEmbed />
+        <AgencyEstimateProvider>
+          <div className="mt-8 w-full">
+            <AgencyPricingCalculator />
           </div>
-        </div>
+
+          <CustomerLogoCloud
+            className="mt-7"
+            headingClassName="text-[#2b2b31]"
+            logoClassName="[&_img]:opacity-70"
+          />
+
+          <div className="mt-8 w-full max-w-[740px] text-center">
+            <h2 className="font-display text-3xl font-black leading-none text-[#2b2b31] sm:text-4xl">
+              Book a time to discuss your campaign
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl text-sm font-medium leading-6 text-black/58 sm:text-base">
+              Choose a time that works. Your selected estimate is included with
+              the booking so we can discuss your goals, B2B creators and
+              campaign plan.
+            </p>
+            <div className="mt-6 text-left">
+              <CalInlineEmbed />
+            </div>
+          </div>
+        </AgencyEstimateProvider>
       </section>
     </main>
   );

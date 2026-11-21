@@ -2,6 +2,8 @@
 
 import { useEffect } from "react";
 
+import { useAgencyEstimate } from "@/components/agency-estimate-context";
+
 declare global {
   interface Window {
     Cal?: CalFunction & {
@@ -21,6 +23,9 @@ const CAL_NAMESPACE = "agency-call";
 const CAL_SCRIPT_SRC = "https://app.cal.com/embed/embed.js";
 
 export function CalInlineEmbed() {
+  const { bookingCampaignSpend, bookingNotes, spendMode } =
+    useAgencyEstimate();
+
   useEffect(() => {
     const initCal = () => {
       if (!window.Cal) {
@@ -29,10 +34,22 @@ export function CalInlineEmbed() {
 
       window.Cal("init", CAL_NAMESPACE, { origin: "https://app.cal.com" });
 
+      document
+        .querySelector("#my-cal-inline-agency-call")
+        ?.replaceChildren();
+
       window.Cal.ns?.[CAL_NAMESPACE]?.("inline", {
         elementOrSelector: "#my-cal-inline-agency-call",
+        // CampaignSpend is the event's required booking question. Notes is
+        // hidden on the event and is included in the host's booking email.
         config: {
+          CampaignSpend: String(bookingCampaignSpend),
           layout: "month_view",
+          notes: bookingNotes,
+          utm_campaign: "agency_call",
+          utm_content: spendMode,
+          utm_medium: "website",
+          utm_source: "agency_pricing_calculator",
           useSlotsViewOnSmallScreen: "true",
         },
         calLink: "hector-forwood-sd052r/agency-call",
@@ -89,7 +106,7 @@ export function CalInlineEmbed() {
     }
 
     initCal();
-  }, []);
+  }, [bookingCampaignSpend, bookingNotes, spendMode]);
 
   return (
     <div
